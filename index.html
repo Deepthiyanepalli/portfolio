@@ -28,11 +28,9 @@
     a{color:var(--brand-2);text-decoration:none} a:hover{text-decoration:underline}
     .wrap{max-width:1200px;margin:0 auto;padding:20px}
 
-    /* layout */
     .shell{display:grid;grid-template-columns:320px 1fr;gap:24px}
     @media(max-width:1000px){.shell{grid-template-columns:1fr}}
 
-    /* left rail */
     .rail{position:sticky;top:14px;height:fit-content;background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       border:1px solid rgba(255,255,255,.07);border-radius:20px;box-shadow:var(--shadow);padding:20px}
     .logo{display:flex;align-items:center;gap:12px}
@@ -47,7 +45,6 @@
       border-radius:999px;padding:6px 10px;font-size:13px;color:var(--muted);cursor:pointer}
     .avatar{width:120px;height:120px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.12);box-shadow:var(--shadow)}
 
-    /* banner */
     .banner{position:relative;background:linear-gradient(125deg, rgba(93,178,255,.15), rgba(13,200,141,.15));
       border:1px solid rgba(255,255,255,.06);border-radius:22px;padding:28px;overflow:hidden}
     .banner h1{font-size:42px;line-height:1.1;margin:0 0 8px}
@@ -59,12 +56,10 @@
       background:var(--bg-soft);font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.25)}
     .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#00112a;border:none}
 
-    /* sections */
     section{margin-top:24px}
     h2{font-size:22px;margin:0 0 10px}
     .panel{background:var(--bg-soft);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
 
-    /* impact */
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .stat{padding:16px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
       border:1px solid rgba(255,255,255,.06)}
@@ -72,7 +67,6 @@
     .stat .d{color:var(--muted)}
     @media(max-width:800px){.stats{grid-template-columns:1fr}}
 
-    /* experience timeline */
     .timeline{position:relative;padding-left:26px}
     .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(var(--accent-exp),var(--brand))}
     .job{position:relative;margin:12px 0;padding:12px 12px 12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.07);
@@ -81,7 +75,6 @@
       box-shadow:0 0 0 4px rgba(143,211,254,.15)}
     .job h3{margin:0 0 6px}.job .meta{color:var(--muted);font-size:14px}.job ul{margin:8px 0 0 18px}
 
-    /* project grid */
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     @media(max-width:1000px){.grid{grid-template-columns:1fr 1fr}}
     @media(max-width:680px){.grid{grid-template-columns:1fr}}
@@ -90,20 +83,17 @@
     .card h3{margin:0 0 6px}.card .meta{color:var(--muted);font-size:14px}
     details{margin-top:8px} summary{cursor:pointer;color:var(--brand-2);font-weight:700}
 
-    /* skills */
     .filter{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
     .filter button{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:var(--chip);color:var(--text);cursor:pointer}
     .filter button.active{outline:2px solid var(--accent-skill)}
     .chips{display:flex;flex-wrap:wrap;gap:8px}
     .chip{background:var(--chip);border:1px solid rgba(255,255,255,.08);padding:7px 10px;border-radius:999px;font-weight:700}
 
-    /* education / certs */
     .edu{border-left:6px solid var(--accent-edu)}
     .ribbon{position:relative}
     .ribbon::after{content:"CERT";position:absolute;top:10px;right:-10px;background:linear-gradient(135deg,var(--brand-2),var(--brand));
       color:#00112a;font-weight:800;padding:4px 8px;border-radius:8px}
 
-    /* contact */
     .vtools{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
     .qr{display:none}
     footer{margin-top:28px;display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;color:var(--muted)}
@@ -119,7 +109,6 @@
           <div class="tag">Data Engineer · Multi-Cloud</div>
         </div></div>
         <div style="margin-top:12px;display:flex;align-items:center;gap:12px">
-          <!-- your uploaded file at repo root -->
           <img id="avatar" class="avatar" src="profile.jpeg" alt="Deepthi Yanepalli"/>
         </div>
         <hr/>
@@ -328,7 +317,7 @@
   <script>
     const $ = (s)=>document.querySelector(s);
 
-    // Active link on scroll (defensive)
+    // Active nav
     (function(){
       const links=[...document.querySelectorAll('#nav a')];
       const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
@@ -346,7 +335,7 @@
     // Year
     const y=$('#y'); if(y) y.textContent=new Date().getFullYear();
 
-    // Theme toggle with persistence
+    // Theme toggle
     (function(){
       const key='dy_theme';
       const root=document.documentElement;
@@ -365,27 +354,22 @@
       }
     })();
 
-    // Links (set your real URLs)
+    // External links
     const ln=$('#ln'); if(ln) ln.href='https://www.linkedin.com/';
-    const gh=$('#gh'); if(gh) gh.href='https://github.com/charish1307';
+    const gh=$('#gh'); if(gh) gh.href='https://github.com/Deepthiyanepalli';
     const resume=$('#resume'); if(resume){ resume.href='#'; resume.addEventListener('click',e=>{ if(resume.getAttribute('href')==='#') e.preventDefault(); }); }
 
-    // Skills filter (robust; supports only data-group)
+    // Skills filter
     (function(){
       const filter=$('#skillFilter');
       const chips=[...document.querySelectorAll('#skillsChips .chip')];
       if(!filter || chips.length===0) return;
-
       filter.addEventListener('click',(e)=>{
         const btn=e.target.closest('button[data-group]');
         if(!btn) return;
         const group=btn.dataset.group || 'all';
-
-        // toggle active
         [...filter.querySelectorAll('button[data-group]')]
           .forEach(b=>b.classList.toggle('active', b===btn));
-
-        // show/hide
         chips.forEach(chip=>{
           const g=chip.dataset.group || 'all';
           chip.style.display = (group==='all' || g===group) ? 'inline-flex' : 'none';
@@ -393,7 +377,7 @@
       });
     })();
 
-    // vCard download
+    // vCard
     (function(){
       const btn=$('#vcard'); if(!btn) return;
       btn.addEventListener('click',()=>{
@@ -423,7 +407,7 @@ END:VCARD`;
       });
     })();
 
-    // Simple QR toggle
+    // QR toggle (placeholder)
     (function(){
       const toggle=$('#toggleQR'), cvs=$('#qr');
       if(!toggle || !cvs) return;
