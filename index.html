@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Deepthi Yanepalli · Data Engineer</title>
+  <meta name="description" content="Portfolio for Deepthi Yanepalli — Data Engineer specializing in multi-cloud data platforms, streaming, and analytics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#070b18; --bg-soft:#0d1326; --text:#e9eeff; --muted:#9fb2cf; --line:#2a365d;
+      --brand:#86ffca; --brand-2:#5db2ff; --chip:#111a37; --ring:rgba(134,255,202,.35);
+      --shadow:0 20px 50px rgba(0,0,0,.45);
+      --accent-edu:#ffd166; --accent-proj:#a29bfe; --accent-skill:#ff9aa2; --accent-exp:#8fd3fe;
+    }
+    [data-theme="light"]{
+      --bg:#f7f9ff; --bg-soft:#ffffff; --text:#0d1633; --muted:#4a5a7a; --line:#e7ecf7;
+      --chip:#eef3ff; --brand:#0dc88d; --brand-2:#2b74ff; --ring:rgba(11,116,255,.2);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+         background:radial-gradient(1200px 800px at 90% -10%, #17224a 0%, transparent 60%),
+                    radial-gradient(900px 600px at -10% 110%, #10224a 0%, transparent 60%),
+                    var(--bg); color:var(--text);}
+    a{color:var(--brand-2);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:1200px;margin:0 auto;padding:20px}
+
+    /* layout */
+    .shell{display:grid;grid-template-columns:320px 1fr;gap:24px}
+    @media(max-width:1000px){.shell{grid-template-columns:1fr}}
+
+    /* left rail */
+    .rail{position:sticky;top:14px;height:fit-content;background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.07);border-radius:20px;box-shadow:var(--shadow);padding:20px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo .dot{width:12px;height:12px;border-radius:999px;background:conic-gradient(from 0deg,var(--brand),var(--brand-2),var(--brand));box-shadow:0 0 24px var(--ring)}
+    .name{font-weight:800;font-size:22px}
+    .tag{margin-top:4px;color:var(--muted)}
+    .rail hr{border:none;height:1px;background:var(--line);margin:16px 0}
+    .nav a{display:block;padding:10px 12px;border-radius:12px;color:var(--muted);font-weight:600}
+    .nav a.active,.nav a:hover{background:var(--chip);color:var(--text)}
+    .contact a{display:inline-block;margin:6px 8px 0 0}
+    .toggle{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg-soft);
+      border-radius:999px;padding:6px 10px;font-size:13px;color:var(--muted);cursor:pointer}
+    .avatar{width:120px;height:120px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.12);box-shadow:var(--shadow)}
+
+    /* banner */
+    .banner{position:relative;background:linear-gradient(125deg, rgba(93,178,255,.15), rgba(13,200,141,.15));
+      border:1px solid rgba(255,255,255,.06);border-radius:22px;padding:28px;overflow:hidden}
+    .banner h1{font-size:42px;line-height:1.1;margin:0 0 8px}
+    .banner p{margin:0;color:var(--muted)}
+    .badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .badge{background:var(--chip);border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:999px;font-weight:700}
+    .cta-row{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.12);
+      background:var(--bg-soft);font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#00112a;border:none}
+
+    /* sections */
+    section{margin-top:24px}
+    h2{font-size:22px;margin:0 0 10px}
+    .panel{background:var(--bg-soft);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+
+    /* impact */
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .stat{padding:16px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.06)}
+    .stat .n{font-family:"JetBrains Mono",monospace;font-size:28px;font-weight:800}
+    .stat .d{color:var(--muted)}
+    @media(max-width:800px){.stats{grid-template-columns:1fr}}
+
+    /* experience timeline */
+    .timeline{position:relative;padding-left:26px}
+    .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(var(--accent-exp),var(--brand))}
+    .job{position:relative;margin:12px 0;padding:12px 12px 12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.07);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01))}
+    .job::before{content:"";position:absolute;left:-3px;top:18px;width:10px;height:10px;border-radius:50%;background:var(--accent-exp);
+      box-shadow:0 0 0 4px rgba(143,211,254,.15)}
+    .job h3{margin:0 0 6px}.job .meta{color:var(--muted);font-size:14px}.job ul{margin:8px 0 0 18px}
+
+    /* project grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media(max-width:1000px){.grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:680px){.grid{grid-template-columns:1fr}}
+    .card{padding:16px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.06)}
+    .card h3{margin:0 0 6px}.card .meta{color:var(--muted);font-size:14px}
+    details{margin-top:8px} summary{cursor:pointer;color:var(--brand-2);font-weight:700}
+
+    /* skills */
+    .filter{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+    .filter button{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:var(--chip);color:var(--text);cursor:pointer}
+    .filter button.active{outline:2px solid var(--accent-skill)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{background:var(--chip);border:1px solid rgba(255,255,255,.08);padding:7px 10px;border-radius:999px;font-weight:700}
+
+    /* education / certs */
+    .edu{border-left:6px solid var(--accent-edu)}
+    .ribbon{position:relative}
+    .ribbon::after{content:"CERT";position:absolute;top:10px;right:-10px;background:linear-gradient(135deg,var(--brand-2),var(--brand));
+      color:#00112a;font-weight:800;padding:4px 8px;border-radius:8px}
+
+    /* contact */
+    .vtools{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .qr{display:none}
+    footer{margin-top:28px;display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="shell">
+      <!-- LEFT RAIL -->
+      <aside class="rail" aria-label="Site navigation">
+        <div class="logo"><span class="dot"></span><div>
+          <div class="name">Deepthi Yanepalli</div>
+          <div class="tag">Data Engineer · Multi-Cloud</div>
+        </div></div>
+        <div style="margin-top:12px;display:flex;align-items:center;gap:12px">
+          <!-- your uploaded file at repo root -->
+          <img id="avatar" class="avatar" src="profile.jpg" alt="Deepthi Yanepalli"/>
+        </div>
+        <hr/>
+        <nav class="nav" id="nav">
+          <a href="#intro" class="active">Overview</a>
+          <a href="#impact">Impact</a>
+          <a href="#projects">Featured Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#certs">Certifications</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <hr/>
+        <div class="contact">
+          <a href="mailto:Deepthi.y2613@gmail.com">Email</a>
+          <a href="#" id="ln">LinkedIn</a>
+          <a href="#" id="gh">GitHub</a>
+        </div>
+        <hr/>
+        <button id="toggle" class="toggle" aria-label="Toggle theme">🌙 Toggle theme</button>
+      </aside>
+
+      <!-- MAIN -->
+      <main>
+        <!-- INTRO -->
+        <section id="intro" class="banner">
+          <h1>Designing data systems that are
+            <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">
+              fast, resilient, and trustworthy
+            </span>.
+          </h1>
+          <p>4+ years building pipelines and platforms across <strong>AWS, Azure, and GCP</strong> with Spark, Kafka, Airflow/Composer, and modern cloud warehouses (Snowflake, Redshift, BigQuery). I specialize in unifying batch + streaming, metadata-driven ELT, and cost-aware analytics.</p>
+          <div class="badge-row">
+            <span class="badge">Spark · PySpark</span>
+            <span class="badge">Snowflake · Redshift · BigQuery</span>
+            <span class="badge">Airflow / Composer</span>
+            <span class="badge">Kafka / Kinesis</span>
+            <span class="badge">Databricks</span>
+          </div>
+          <div class="cta-row">
+            <a class="btn primary" href="#contact">Contact Me</a>
+            <a class="btn" href="#projects">View Projects</a>
+            <a class="btn" href="#" id="resume">Download Résumé</a>
+          </div>
+        </section>
+
+        <!-- IMPACT -->
+        <section id="impact">
+          <h2>Impact Snapshot</h2>
+          <div class="stats">
+            <div class="stat"><div class="n">45%+</div><div class="d">Engagement lift from real-time personalization</div></div>
+            <div class="stat"><div class="n">TB-scale</div><div class="d">Pipelines on AWS & GCP daily</div></div>
+            <div class="stat"><div class="n">99.9%</div><div class="d">Pipeline reliability on critical jobs</div></div>
+          </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+          <h2>Featured Projects</h2>
+          <div class="grid">
+            <article class="card" style="border-left:4px solid var(--accent-proj)">
+              <h3>American Income Life – Azure Modern Data Platform</h3>
+              <div class="meta">Azure Databricks (PySpark) · Snowflake · Kafka · Tableau · Azure DevOps</div>
+              <p>Migrated on-prem SQL/Hive logic into Databricks PySpark, built streaming ingestion with Kafka, implemented monitoring (Log Analytics) and CI/CD, and enabled self-service analytics in Snowflake/Tableau.</p>
+              <img alt="Azure Databricks + Snowflake architecture" style="width:100%;border-radius:12px;margin-top:8px"
+                   src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='100%25' height='100%25' fill='%230d1326'/%3E%3Cg font-family='Inter' fill='%23e9eeff' font-size='16'%3E%3Crect x='40' y='60' width='240' height='80' rx='12' fill='%23111a37' stroke='%23fff' opacity='.15'/%3E%3Ctext x='60' y='110'%3EAzure Data Lake Gen2%3C/text%3E%3Crect x='320' y='60' width='260' height='80' rx='12' fill='%23111a37' stroke='%239fb2cf' opacity='.25'/%3E%3Ctext x='340' y='110'%3EAzure Databricks (PySpark)%3C/text%3E%3Crect x='620' y='60' width='220' height='80' rx='12' fill='%23111a37' stroke='%2386ffca' opacity='.25'/%3E%3Ctext x='640' y='110'%3ESnowflake ELT%3C/text%3E%3Crect x='880' y='60' width='260' height='80' rx='12' fill='%23111a37' stroke='%235db2ff' opacity='.25'/%3E%3Ctext x='900' y='110'%3ETableau Dashboards%3C/text%3E%3Cpath d='M280 100 H320 M580 100 H620 M840 100 H880' stroke='%23a29bfe' stroke-width='2' marker-end='url(%23a)'/%3E%3Cdefs%3E%3Cmarker id='a' markerWidth='10' markerHeight='10' refX='6' refY='3' orient='auto'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%23a29bfe'/%3E%3C/marker%3E%3C/defs%3E%3C/g%3E%3C/svg%3E"/>
+              <details>
+                <summary>Read case study</summary>
+                <ul>
+                  <li>Converted legacy SQL/Hive into optimized PySpark DataFrame transforms with unit tests.</li>
+                  <li>Kafka→Bronze→Silver→Gold Delta layers; automated DQ checks and alerting.</li>
+                  <li>CI/CD with Azure DevOps and environment promotions; governance via Unity Catalog.</li>
+                </ul>
+              </details>
+              <p><a href="https://github.com/charish1307?tab=repositories&q=azure+databricks+snowflake" target="_blank" rel="noopener">View on GitHub</a></p>
+            </article>
+
+            <article class="card" style="border-left:4px solid var(--brand)">
+              <h3>Noble Energy – AWS Real-Time Analytics</h3>
+              <div class="meta">AWS S3 · Glue · Redshift · DynamoDB · Spark/PySpark · Airflow · Kinesis/Kafka</div>
+              <p>Unified batch & streaming (sub-minute insights), ML-ready features, and optimized Redshift for BI.</p>
+              <img alt="AWS streaming architecture" style="width:100%;border-radius:12px;margin-top:8px"
+                   src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='100%25' height='100%25' fill='%230d1326'/%3E%3Cg font-family='Inter' fill='%23e9eeff' font-size='16'%3E%3Crect x='40' y='60' width='220' height='80' rx='12' fill='%23111a37' stroke='%239fb2cf' opacity='.25'/%3E%3Ctext x='80' y='110'%3EAWS Kinesis%3C/text%3E%3Crect x='300' y='60' width='240' height='80' rx='12' fill='%23111a37' stroke='%23a29bfe' opacity='.25'/%3E%3Ctext x='330' y='110'%3ESpark Streaming%3C/text%3E%3Crect x='580' y='60' width='220' height='80' rx='12' fill='%23111a37' stroke='%2386ffca' opacity='.25'/%3E%3Ctext x='610' y='110'%3EGlue Jobs%3C/text%3E%3Crect x='840' y='60' width='300' height='80' rx='12' fill='%23111a37' stroke='%235db2ff' opacity='.25'/%3E%3Ctext x='860' y='110'%3ERedshift / DynamoDB%3C/text%3E%3Cpath d='M260 100 H300 M540 100 H580 M800 100 H840' stroke='%2386ffca' stroke-width='2' marker-end='url(%23b)'/%3E%3Cdefs%3E%3Cmarker id='b' markerWidth='10' markerHeight='10' refX='6' refY='3' orient='auto'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%2386ffca'/%3E%3C/marker%3E%3C/defs%3E%3C/g%3E%3C/svg%3E"/>
+              <p><a href="https://github.com/charish1307?tab=repositories&q=aws+spark+redshift" target="_blank" rel="noopener">View on GitHub</a></p>
+            </article>
+
+            <article class="card" style="border-left:4px solid var(--accent-skill)">
+              <h3>Barclays – GCP Dataflow → BigQuery ETL</h3>
+              <div class="meta">Apache Beam · Pub/Sub · Composer · Dataproc · Data Catalog</div>
+              <p>Streaming/batch fusion pipelines with DQ gates, authorized views, and Composer orchestration.</p>
+              <img alt="GCP Dataflow and BigQuery architecture" style="width:100%;border-radius:12px;margin-top:8px"
+                   src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='100%25' height='100%25' fill='%230d1326'/%3E%3Cg font-family='Inter' fill='%23e9eeff' font-size='16'%3E%3Crect x='40' y='60' width='220' height='80' rx='12' fill='%23111a37' stroke='%239fb2cf' opacity='.25'/%3E%3Ctext x='90' y='110'%3EPub/Sub%3C/text%3E%3Crect x='300' y='60' width='260' height='80' rx='12' fill='%23111a37' stroke='%23a29bfe' opacity='.25'/%3E%3Ctext x='330' y='110'%3EDataflow (Beam)%3C/text%3E%3Crect x='600' y='60' width='240' height='80' rx='12' fill='%23111a37' stroke='%2386ffca' opacity='.25'/%3E%3Ctext x='640' y='110'%3EBigQuery%3C/text%3E%3Crect x='880' y='60' width='280' height='80' rx='12' fill='%23111a37' stroke='%235db2ff' opacity='.25'/%3E%3Ctext x='900' y='110'%3EComposer Orchestration%3C/text%3E%3Cpath d='M260 100 H300 M560 100 H600 M840 100 H880' stroke='%23ff9aa2' stroke-width='2' marker-end='url(%23c)'/%3E%3Cdefs%3E%3Cmarker id='c' markerWidth='10' markerHeight='10' refX='6' refY='3' orient='auto'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%23ff9aa2'/%3E%3C/marker%3E%3C/defs%3E%3C/g%3E%3C/svg%3E"/>
+              <p><a href="https://github.com/charish1307?tab=repositories&q=gcp+dataflow+bigquery" target="_blank" rel="noopener">View on GitHub</a></p>
+            </article>
+          </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience">
+          <h2>Experience</h2>
+          <div class="timeline">
+            <div class="job">
+              <h3>American Income Life — <em>Data Scientist / Data Engineer</em></h3>
+              <div class="meta">Nov 2024 – Present · Lansing, MI</div>
+              <ul>
+                <li>Developed PySpark code in Azure Databricks mirroring on-prem transformations; migrated SQL Server & Oracle to Azure and Snowflake.</li>
+                <li>Built Kafka streaming pipelines; monitoring/alerts with Azure Log Analytics; CI/CD with Azure DevOps.</li>
+                <li>Self-service reporting from ADLS Gen2; Tableau reporting; Hive UDFs; HBase bulk loads; Sqoop; Oozie scheduling.</li>
+              </ul>
+            </div>
+            <div class="job">
+              <h3>Noble Energy — <em>AWS Data Engineer</em></h3>
+              <div class="meta">Nov 2023 – Oct 2024 · Michigan, USA</div>
+              <ul>
+                <li>Spark/PySpark, Snowflake/Redshift, Cassandra/HBase, Kafka/Kinesis; boosted user LTV by 45%.</li>
+                <li>Large-scale ETL with Hive/SQL; automated reporting via Oozie; Tableau/Power BI dashboards.</li>
+                <li>Fraud detection & claims analytics using TensorFlow/Spark MLlib (90%+ accuracy).</li>
+              </ul>
+            </div>
+            <div class="job">
+              <h3>Barclays (Wipro) — <em>GCP Data Engineer</em></h3>
+              <div class="meta">Nov 2022 – Jul 2023 · Mumbai, India</div>
+              <ul>
+                <li>Dataflow (Beam) streaming/batch ETL to BigQuery; Pub/Sub; Composer orchestration.</li>
+                <li>Dataproc/Sqoop ingestion; Data Catalog tagging; provisioning app; monitoring via Stackdriver.</li>
+                <li>Cost dashboards in Data Studio; alerting for Composer/Data Fusion.</li>
+              </ul>
+            </div>
+            <div class="job">
+              <h3>Nicholas Piramal India Ltd. — <em>Data Engineer</em></h3>
+              <div class="meta">Jun 2021 – Oct 2022 · Hyderabad, India</div>
+              <ul>
+                <li>Built Data Lake on AWS (EMR, S3, Lambda) with Python/Spark ETL for JSON/CSV/XML/DAT feeds.</li>
+                <li>Kafka producers + Spark Streaming for clickstream; Oracle↔Redshift ETL; Informatica mappings.</li>
+                <li>Sqoop, Hive, MapReduce, Zookeeper, Jenkins, Git, Linux; Agile/Scrum delivery.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills">
+          <h2>Skills</h2>
+          <div class="panel">
+            <div class="filter" id="skillFilter">
+              <button data-group="all" class="active">All</button>
+              <button data-group="cloud">Cloud</button>
+              <button data-group="processing">Processing</button>
+              <button data-group="warehouse">Warehouses</button>
+              <button data-group="lang">Languages</button>
+              <button data-group="viz">Reporting</button>
+              <button data-group="devops">DevOps</button>
+            </div>
+            <div class="chips" id="skillsChips">
+              <span class="chip" data-group="cloud">AWS: EC2 · S3 · RDS · EMR · Lambda · CloudFormation · CloudWatch · SQS · SageMaker · Glue · Athena · ELB</span>
+              <span class="chip" data-group="cloud">Azure: ADF · ADLS · Synapse · Databricks · DevOps · Analysis Services · Key Vault</span>
+              <span class="chip" data-group="cloud">GCP: Composer · BigQuery · GCS · Dataproc · Cloud SQL · Functions · Dataflow · Data Fusion · Pub/Sub</span>
+              <span class="chip" data-group="processing">Hadoop · MapReduce · Sqoop · Hive · Oozie · Spark · Zookeeper · Kafka · Flume</span>
+              <span class="chip" data-group="warehouse">Snowflake · Redshift · BigQuery · Teradata</span>
+              <span class="chip" data-group="warehouse">Databases: Oracle · MySQL · SQL Server · PostgreSQL · MongoDB · Cassandra · HBase · DynamoDB</span>
+              <span class="chip" data-group="lang">Python · Scala · SQL · Shell</span>
+              <span class="chip" data-group="viz">Power BI · Tableau · Data Studio</span>
+              <span class="chip" data-group="devops">Git · Jenkins · Docker · CI/CD · Agile · Waterfall</span>
+              <span class="chip" data-group="processing">Formats: JSON · Parquet · Avro · XML · CSV</span>
+              <span class="chip" data-group="processing">Notebooks/IDEs: Eclipse · IntelliJ · PyCharm · Jupyter · Databricks</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- CERTS -->
+        <section id="certs">
+          <h2>Education & Certifications</h2>
+          <div class="panel edu">
+            <p><strong>Grand Valley State University</strong> — Graduate studies in Data Engineering / Data Science.</p>
+          </div>
+          <div class="grid" style="margin-top:12px">
+            <div class="card ribbon"><h3>AWS Certified Data Engineer — Associate</h3><div class="meta">Add credential ID & date</div></div>
+            <div class="card ribbon"><h3>Azure Data Engineer — DP-203</h3><div class="meta">Add credential ID & date</div></div>
+            <div class="card ribbon"><h3>GCP Professional Data Engineer</h3><div class="meta">Add credential ID & date</div></div>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+          <h2>Contact</h2>
+          <div class="panel">
+            <p><strong>Email:</strong> <a href="mailto:Deepthi.y2613@gmail.com">Deepthi.y2613@gmail.com</a> ·
+               <strong>Phone:</strong> <a href="tel:+16163188990">+1 (616) 318-8990</a></p>
+            <div class="vtools">
+              <a class="btn" id="vcard">Download vCard</a>
+              <a class="btn" id="copyEmail">Copy email</a>
+              <a class="btn" id="toggleQR">Show QR</a>
+            </div>
+            <canvas id="qr" class="qr" width="128" height="128" aria-label="QR code"></canvas>
+          </div>
+        </section>
+
+        <footer>
+          <div>© <span id="y"></span> Deepthi Yanepalli</div>
+          <div>Built with handcrafted HTML/CSS · Light/Dark</div>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const $ = (s)=>document.querySelector(s);
+
+    // Active link on scroll (defensive)
+    (function(){
+      const links=[...document.querySelectorAll('#nav a')];
+      const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      if(!('IntersectionObserver' in window) || sections.length===0) return;
+      const io=new IntersectionObserver((ents)=>{
+        ents.forEach(e=>{
+          if(e.isIntersecting){
+            links.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
+          }
+        });
+      },{rootMargin:'-40% 0px -55% 0px', threshold:[0,1]});
+      sections.forEach(s=>io.observe(s));
+    })();
+
+    // Year
+    const y=$('#y'); if(y) y.textContent=new Date().getFullYear();
+
+    // Theme toggle with persistence
+    (function(){
+      const key='dy_theme';
+      const root=document.documentElement;
+      const setTheme=t=>{
+        if(t==='light') root.setAttribute('data-theme','light');
+        else root.removeAttribute('data-theme');
+        localStorage.setItem(key, t || 'dark');
+      };
+      setTheme(localStorage.getItem(key));
+      const toggleBtn=$('#toggle');
+      if(toggleBtn){
+        toggleBtn.addEventListener('click', ()=>{
+          const now = root.getAttribute('data-theme')==='light' ? 'dark' : 'light';
+          setTheme(now);
+        });
+      }
+    })();
+
+    // Links (set your real URLs)
+    const ln=$('#ln'); if(ln) ln.href='https://www.linkedin.com/';
+    const gh=$('#gh'); if(gh) gh.href='https://github.com/charish1307';
+    const resume=$('#resume'); if(resume){ resume.href='#'; resume.addEventListener('click',e=>{ if(resume.getAttribute('href')==='#') e.preventDefault(); }); }
+
+    // Skills filter (robust; supports only data-group)
+    (function(){
+      const filter=$('#skillFilter');
+      const chips=[...document.querySelectorAll('#skillsChips .chip')];
+      if(!filter || chips.length===0) return;
+
+      filter.addEventListener('click',(e)=>{
+        const btn=e.target.closest('button[data-group]');
+        if(!btn) return;
+        const group=btn.dataset.group || 'all';
+
+        // toggle active
+        [...filter.querySelectorAll('button[data-group]')]
+          .forEach(b=>b.classList.toggle('active', b===btn));
+
+        // show/hide
+        chips.forEach(chip=>{
+          const g=chip.dataset.group || 'all';
+          chip.style.display = (group==='all' || g===group) ? 'inline-flex' : 'none';
+        });
+      });
+    })();
+
+    // vCard download
+    (function(){
+      const btn=$('#vcard'); if(!btn) return;
+      btn.addEventListener('click',()=>{
+        const vcf=`BEGIN:VCARD
+VERSION:3.0
+N:Yanepalli;Deepthi;;;
+FN:Deepthi Yanepalli
+EMAIL;TYPE=INTERNET:Deepthi.y2613@gmail.com
+TEL;TYPE=CELL:+16163188990
+TITLE:Data Engineer
+END:VCARD`;
+        const blob=new Blob([vcf],{type:'text/vcard'});
+        const url=URL.createObjectURL(blob);
+        const a=document.createElement('a'); a.href=url; a.download='Deepthi_Yanepalli.vcf'; a.click();
+        URL.revokeObjectURL(url);
+      });
+    })();
+
+    // Copy email
+    (function(){
+      const btn=$('#copyEmail'); if(!btn || !navigator.clipboard) return;
+      btn.addEventListener('click', async ()=>{
+        try{
+          await navigator.clipboard.writeText('Deepthi.y2613@gmail.com');
+          const t=btn.textContent; btn.textContent='Copied!'; setTimeout(()=>btn.textContent=t,1200);
+        }catch(_){}
+      });
+    })();
+
+    // Simple QR toggle
+    (function(){
+      const toggle=$('#toggleQR'), cvs=$('#qr');
+      if(!toggle || !cvs) return;
+      toggle.addEventListener('click', ()=>{
+        cvs.style.display = cvs.style.display==='block' ? 'none' : 'block';
+        if(cvs.style.display==='block'){
+          const ctx=cvs.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,128,128); ctx.fillStyle='#000';
+          for(let y=0;y<16;y++) for(let x=0;x<16;x++) if((x*y+x+y)%5===0) ctx.fillRect(x*8,y*8,6,6);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
